@@ -113,9 +113,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
-    <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-1.1.2.min.js" />
     <Content Include="SPA\App.js" />
+    <Content Include="SPA\Controllers\GridController.js" />
     <Content Include="SPA\Controllers\MainController.js" />
+    <Content Include="SPA\Controllers\ViewProductController.js" />
+    <Content Include="SPA\Views\Grid.html" />
+    <Content Include="SPA\Views\ViewProductWindow.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +145,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="SPA\Views\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

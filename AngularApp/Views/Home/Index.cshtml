@@ -1,63 +1,77 @@
 ﻿<html>
 <head>
     <title>Angular App</title>
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/angular-route.min.js"></script>
-    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular.min.v1.5.3.js"></script>
+    @*<script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>*@
+    
+    <script src="~/Controllers/MainController.js"></script>
+    <script src="~/Scripts/service.js"></script>
     <script src="~/Scripts/jquery-2.2.4.min.js"></script>
-
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <script src="~/Scripts/wait.js"></script>
+
+    
+    @*<script src="~/Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>*@
     <link href="~/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="~/css/bootstrap-theme.min.css" rel="stylesheet" />
 
-    <script src="~/Scripts/Chart.min.js"></script>
-    <script src="~/Scripts/angular-chart.min.js"></script>
-    <link href="~/css/angular-chart.min.css" rel="stylesheet" />
-
-    <script src="~/SPA/Controllers/ViewProductController.js"></script>
-    <script src="~/SPA/Controllers/GridController.js"></script>
-    <script src="~/SPA/Controllers/MainController.js"></script>
-    <script src="~/SPA/App.js"></script>
+   
+    @*<script src="~/SPA/App.js"></script>*@
 </head>
 <body>
     <div ng-app="App" ng-controller="MainController">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Location</a>
-                </div>
-
-                <!-- Collect the nav links, forms and other content for toggling-->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{selectedLocation.Location}}<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li ng-repeat="x in models.locations" ng-click="changeLocation(x)"><a>{{x.Location}}</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search" />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sx-12 centered">
+                    <h2 class="text-center">Поиск общих друзей ВКонтакте</h2>
+                    <p class="text-center">Не можешь найти человека в Вконтакте, но точно знаешь что он может быть одновременно у нескольких друзей? Добавь ссылки на друзей в форму и нажми кнопку "Найти".</p>
+                    <form class="col-md-12">
+                        
+                        <div class="input-group" ng-repeat="id in ids">
+                            <span class="input-group-addon" id="basic-addon3">https://vk.com/</span><input type="text" class="form-control" ng-model="id.id">
                         </div>
-                        <button type="submit" class="btn btn-default">Search</button>
-                    </div>
+                        <div class="bg-danger"><span ng-show="error" ng-model="error">{{error}}</span></div>
+                        <div style="margin-top: 20px;">
+                            <div class="table-responsive">
+                                <table class="table" ng-show="panel">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Имя Фамилия</th>
+                                            <th>
+                                                Пол<br />
+                                                <select ng-show="panel" class="form-control" name="singleSelect" ng-options="sex as sex.name for sex in sexx" ng-model="sex" ng-change="changee()"></select>
+                                            </th>
+                                            <th>
+                                                Город<br /><select ng-show="panel" class="ng-hide form-control" name="singleSelect" ng-options="city as city for city in citys" ng-model="city" ng-change="changee()"></select>
+                                            </th>
+                                            <th>
+                                                Страна<br />
+                                                <select ng-show="panel" class="ng-hide form-control" name="singleSelect" ng-options="country as country for country in countrys" ng-model="country" ng-change="changee()"></select>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="con in content">
+                                        <tr>
+                                            <td><img class="" ng-src="{{con.photo_100}}" /></td>
+                                            <td><a href="https://vk.com/id{{con.uid}}">{{con.first_name}} {{con.last_name}}</a></td>
+                                            <td>{{con.sex!=1 ? 'мужской' : 'женский' }}</td>
+                                            <td>{{con.city}}</td>
+                                            <td>{{con.country}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div ng-hide="panel" style="text-align: center;">
+                            <button class="btn btn-success" ng-click="find()">Найти</button>
+                            <button class="btn" ng-click="add()">Добавить человека</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </nav>
-
-        <div ng-view>
-
-        </div>	
+        </div>
 
     </div>
 </body>

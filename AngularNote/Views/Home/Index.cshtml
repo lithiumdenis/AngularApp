@@ -2,30 +2,63 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div ng-controller="mvcCRUDCtrl">
+    <div class="divList">
+        <p><b><i>Angular Note</i></b></p>
+        <table class="table table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Crypto Text</b></td>
+                <td><b>Date</b></td>
+            </tr>
+            <tr ng-repeat="note in notes">
+                <td>
+                    {{note.ID}}
+                </td>
+                <td>
+                    {{note.EncryptedText}}
+                </td>
+                <td>
+                    {{note.Date}}
+                </td>
+                <td>
+                    <span ng-click="editNote(note)" class="btn btn-primary">Изменить</span>
+                    <span ng-click="deleteNote(note)" class="btn btn-danger">Удалить</span>
+                </td>
+            </tr>
+        </table> 
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <span ng-click="AddNoteDiv()" class="btn btn-default">
+        Добавить запись
+    </span>
+    <div ng-show="divNote">
+        <p class="divHead"></p>
+        <table class="table">
+            <tr>
+                <td><b><i>{{Action}} запись</i></b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Id</b></td>
+                <td>
+                    <input type="text" disabled="disabled" ng-model="noteId" />
+                </td>
+                <td><b>Date</b></td>
+                <td>
+                    <input type="datetime" ng-model="noteDate" />
+                </td>
+                <td><b>Encrypted Text</b></td>
+                <td>
+                    <input type="text" ng-model="noteEncryptedText" />
+                </td>
+                <td></td>
+                <td>
+                    <input type="button" class="btn btn-default" value="Сохранить" ng-click="AddUpdateNote()" />
+                    <input type="button" class="btn btn-danger" value="Отмена" ng-click="Cancel()" />
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

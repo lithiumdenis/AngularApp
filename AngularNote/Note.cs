@@ -14,19 +14,9 @@ namespace AngularNote
     
     public partial class Note
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Note()
-        {
-            this.Key = new HashSet<Key>();
-        }
-    
         public int Id { get; set; }
         public int UserId { get; set; }
-        public System.DateTime Date { get; set; }
+        public string Date { get; set; }
         public string EncryptedText { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Key> Key { get; set; }
-        public virtual User User { get; set; }
     }
 }

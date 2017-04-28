@@ -13,10 +13,10 @@ namespace AngularNote
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NotesDBEntities : DbContext
+    public partial class DatabaseNoteEntities : DbContext
     {
-        public NotesDBEntities()
-            : base("name=NotesDBEntities")
+        public DatabaseNoteEntities()
+            : base("name=DatabaseNoteEntities")
         {
         }
     

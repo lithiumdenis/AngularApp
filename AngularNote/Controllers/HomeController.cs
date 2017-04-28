@@ -16,7 +16,7 @@ namespace AngularNote.Controllers
         // GET: All notes
         public JsonResult GetAllNotes()
         {
-            using (var ctx = new NotesDBEntities())
+            using (var ctx = new DatabaseNoteEntities())
             {
                 var notesList = ctx.Note.ToList();
                 return Json(notesList, JsonRequestBehavior.AllowGet);
@@ -26,7 +26,7 @@ namespace AngularNote.Controllers
         // GET: Note by Id
         public JsonResult GetNoteById(string id)
         {
-            using (var ctx = new NotesDBEntities())
+            using (var ctx = new DatabaseNoteEntities())
             {
                 var noteId = Convert.ToInt32(id);
                 var getNoteById = ctx.Note.Find(noteId);
@@ -37,9 +37,9 @@ namespace AngularNote.Controllers
         // Update Note
         public string UpdateNote(Note note)
         {
-            if(note != null)
+            if (note != null)
             {
-                using (var ctx = new NotesDBEntities())
+                using (var ctx = new DatabaseNoteEntities())
                 {
                     int noteId = Convert.ToInt32(note.Id);
                     Note _note = ctx.Note.Where(n => n.Id == noteId).FirstOrDefault();
@@ -61,7 +61,7 @@ namespace AngularNote.Controllers
         {
             if (note != null)
             {
-                using (var ctx = new NotesDBEntities())
+                using (var ctx = new DatabaseNoteEntities())
                 {
                     ctx.Note.Add(note);
                     ctx.SaveChanges();
@@ -77,12 +77,12 @@ namespace AngularNote.Controllers
         // Delete Note
         public string DeleteNote(string noteId)
         {
-            if(!String.IsNullOrEmpty(noteId))
+            if (!String.IsNullOrEmpty(noteId))
             {
                 try
                 {
                     int _noteId = Int32.Parse(noteId);
-                    using (var ctx = new NotesDBEntities())
+                    using (var ctx = new DatabaseNoteEntities())
                     {
                         var _note = ctx.Note.Find(_noteId);
                         ctx.Note.Remove(_note);

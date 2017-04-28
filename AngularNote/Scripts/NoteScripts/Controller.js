@@ -38,7 +38,7 @@
 
         if (getNoteAction == "Update") {
             Note.Id = $scope.noteId;
-            var getNoteData = crudAJService.updateNote(note);
+            var getNoteData = crudAJService.updateNote(Note);
             getNoteData.then(function (msg) {
                 GetAllNotes();
                 alert(msg.data);

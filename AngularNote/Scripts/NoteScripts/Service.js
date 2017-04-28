@@ -45,7 +45,7 @@
             method: "post",
             url: "Home/DeleteNote",
             params: {
-                bookId: JSON.stringify(noteId)
+                noteId: JSON.stringify(noteId)
             }
         });
         return response;

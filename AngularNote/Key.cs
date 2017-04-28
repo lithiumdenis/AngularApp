@@ -17,7 +17,5 @@ namespace AngularNote
         public int Id { get; set; }
         public int NoteId { get; set; }
         public string KeyText { get; set; }
-    
-        public virtual Note Note { get; set; }
     }
 }

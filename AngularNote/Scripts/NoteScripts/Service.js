@@ -1,53 +1,22 @@
-﻿app.service("crudAJService", function ($http) {
-    //get all notes
-    //Имя для this - произвольное, а путь из MVC контроллера
-    this.getAllNotes = function () {
-        return $http.get("Home/GetAllNotes");
-    };
+﻿var services = angular.module('myApp.services', ['ngResource']);
 
-    //get Note by noteId
-    this.getNote = function (noteId) {
-        var response = $http({
-            method: "post",
-            url: "Home/GetNoteById",
-            params: {
-                id: JSON.stringify(noteId)
-            }
-        });
-        return response;
-    };
+// Resource: AngularTasks
+// Author: Greg Dudding
+// Purpose: This factory equips the resource object with query and create functions, to return the full list of tasks, or to create a new one, things we don't need an id for.
+services.factory('AngularTasks', function ($resource) {
+    return $resource('http://localhost:64331/api/Notes/', { id: '@id' }, {
+        query: { method: 'GET', isArray: true },
+        create: { method: 'POST', isArray: true }
+    })
+});
 
-    // Update Note 
-    this.updateNote = function (note) {
-        var response = $http({
-            method: "post",
-            url: "Home/UpdateNote",
-            data: JSON.stringify(note),
-            dataType: "json"
-        });
-        return response;
-    }
-
-    // Add Note
-    this.AddNote = function (note) {
-        var response = $http({
-            method: "post",
-            url: "Home/AddNote",
-            data: JSON.stringify(note),
-            dataType: "json"
-        });
-        return response;
-    }
-
-    //Delete Note
-    this.DeleteNote = function (noteId) {
-        var response = $http({
-            method: "post",
-            url: "Home/DeleteNote",
-            params: {
-                noteId: JSON.stringify(noteId)
-            }
-        });
-        return response;
-    }
+// Resource: AngularTask
+// Author: Greg Dudding
+// Purpose: This factory equips the resource object with show, update, and delete functions, things we need an id for.
+services.factory('AngularTask', function ($resource) {
+    return $resource('http://localhost:64331/api/Notes/:id', { id: '@id', TaskDescription: "@TaskDescription" }, {
+        show: { method: 'GET' },
+        update: { method: 'PUT', params: { TaskId: '@id', TaskDescription: '@TaskDescription' }, isArray: true },
+        delete: { method: 'DELETE', params: { id: '@id' }, isArray: false }
+    })
 });

@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Create a new Task</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputDescription">Description:</label>
+
+            <div class="controls">
+                <input type="text" id="inputDescription" ng-model="task.EncryptedText" placeholder="Input text:"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="createNewTask()" class="btn btn-small btn-primary">Create</a>
+            </div>
+        </div>
+    </form>
+</div>

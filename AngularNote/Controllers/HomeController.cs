@@ -23,7 +23,7 @@ namespace AngularNote.Controllers
         [System.Web.Http.HttpGet]
         [System.Web.Http.HttpPut]
         [System.Web.Http.HttpDelete]
-        public IQueryable<Note> GetNotes()
+        public IQueryable<Note> GetNotes()//++
         {
             return db.Note;
         }
@@ -33,9 +33,9 @@ namespace AngularNote.Controllers
         [Route("api/Notes/{id}")]
         [ResponseType(typeof(Note))]
         [System.Web.Http.HttpGet]
-        public async Task<IHttpActionResult> GetNote(int id)
+        public IHttpActionResult GetNote(int id)//++
         {
-            Note note = await db.Note.FindAsync(id);
+            Note note = db.Note.Find(id);
             if (note == null)
                 return NotFound();
             return Ok(note);
@@ -46,7 +46,7 @@ namespace AngularNote.Controllers
         [Route("api/Notes/{id}")]
         [ResponseType(typeof(void))]
         [System.Web.Http.HttpPut]
-        public async Task<IHttpActionResult> PutNote(int id, [FromBody] Note note)
+        public IHttpActionResult PutNote(int id, Note note)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -54,11 +54,20 @@ namespace AngularNote.Controllers
             if (id != note.Id)
                 return BadRequest();
 
-            db.Entry(note).State = EntityState.Modified;
+
+            
+            Note _note = db.Note.Where(n => n.Id == id).FirstOrDefault();
+
+            _note.Date = note.Date;
+            _note.EncryptedText = note.EncryptedText;
+            //            ctx.SaveChanges();
+
+
+            //db.Entry(note).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch(DbUpdateConcurrencyException)
             {
@@ -76,15 +85,16 @@ namespace AngularNote.Controllers
         [Route("api/Notes/")]
         [ResponseType(typeof(Note))]
         [System.Web.Http.HttpPost]
-        public async Task<IHttpActionResult> PostNote(Note note)
+        public IHttpActionResult PostNote(Note note)//++
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             note.Date = DateTime.Now.ToString();
+            note.UserId = 1;
 
             db.Note.Add(note);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = note.Id }, note);
         }
 
@@ -93,14 +103,14 @@ namespace AngularNote.Controllers
         [Route("api/Notes/{id}")]
         [ResponseType(typeof(Note))]
         [System.Web.Http.HttpDelete]
-        public async Task<IHttpActionResult> DeleteNote(int id)
+        public IHttpActionResult DeleteNote(int id)//++
         {
-            Note note = await db.Note.FindAsync(id);
+            Note note = db.Note.Find(id);
             if (note == null)
                 return NotFound();
 
             db.Note.Remove(note);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return Ok(note);
         }
 
@@ -117,98 +127,5 @@ namespace AngularNote.Controllers
         {
             return db.Note.Count(e => e.Id == id) > 0;
         }
-
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        //// GET: All notes
-        //public JsonResult GetAllNotes()
-        //{
-        //    using (var ctx = new DatabaseNoteEntities())
-        //    {
-        //        var notesList = ctx.Note.ToList();
-        //        return Json(notesList, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
-
-        //// GET: Note by Id
-        //public JsonResult GetNoteById(string id)
-        //{
-        //    using (var ctx = new DatabaseNoteEntities())
-        //    {
-        //        var noteId = Convert.ToInt32(id);
-        //        var getNoteById = ctx.Note.Find(noteId);
-        //        return Json(getNoteById, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
-
-        //// Update Note
-        //public string UpdateNote(Note note)
-        //{
-        //    if (note != null)
-        //    {
-        //        using (var ctx = new DatabaseNoteEntities())
-        //        {
-        //            int noteId = Convert.ToInt32(note.Id);
-        //            Note _note = ctx.Note.Where(n => n.Id == noteId).FirstOrDefault();
-
-        //            _note.Date = note.Date;
-        //            _note.EncryptedText = note.EncryptedText;
-        //            ctx.SaveChanges();
-        //            return "Note updated successfully!";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return "Invalid note record!";
-        //    }
-        //}
-
-        //// Add Note
-        //public string AddNote(Note note)
-        //{
-        //    if (note != null)
-        //    {
-        //        using (var ctx = new DatabaseNoteEntities())
-        //        {
-        //            ctx.Note.Add(note);
-        //            ctx.SaveChanges();
-        //            return "Note added successfully!";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return "Invalid note record!";
-        //    }
-        //}
-
-        //// Delete Note
-        //public string DeleteNote(string noteId)
-        //{
-        //    if (!String.IsNullOrEmpty(noteId))
-        //    {
-        //        try
-        //        {
-        //            int _noteId = Int32.Parse(noteId);
-        //            using (var ctx = new DatabaseNoteEntities())
-        //            {
-        //                var _note = ctx.Note.Find(_noteId);
-        //                ctx.Note.Remove(_note);
-        //                ctx.SaveChanges();
-        //                return "Note removed successfully!";
-        //            }
-        //        }
-        //        catch
-        //        {
-        //            return "Note details not found";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return "Invalid operation";
-        //    }
-        //}
     }
 }

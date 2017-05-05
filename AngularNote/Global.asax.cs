@@ -15,10 +15,7 @@ namespace AngularNote
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configure(RouteConfig.RegisterRoutes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

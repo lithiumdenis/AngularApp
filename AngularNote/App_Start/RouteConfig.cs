@@ -12,7 +12,6 @@ namespace AngularNote
     {
         public static void RegisterRoutes(HttpConfiguration routes)
         {
-            //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapHttpAttributeRoutes();
 
             routes.Routes.MapHttpRoute(

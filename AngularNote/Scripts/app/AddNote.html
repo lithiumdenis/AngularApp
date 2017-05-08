@@ -1,39 +1,39 @@
 ﻿<div ng-controller="noteAddController">
     <div class="row">
         <div class="col-md-4">
-            <p class="lead">Add note</p>
+            <p class="lead">Добавить запись</p>
         </div>
     </div>
 
     <form name="addNoteForm" class="form-horizontal" ng-submit="addNote()" novalidate>
         <div class="form-group">
-            <label for="inputDate" class="col-sm-2 control-label">Дата</label>
+            <label for="inputDate" class="col-sm-2 control-label">Дата:</label>
             <div class="col-sm-10" ng-class="{ 'has-error' : addNoteForm.date.$invalid && !addNoteForm.date.$pristine }">
-                <input type="text" name="date" ng-model="newNote.date" placeholder="Date"
-                       class="form-control" required ng-minlength="2" ng-maxlength="50" />
+                <input type="text" name="date" ng-model="newNote.date" placeholder="Дата"
+                       class="form-control" required ng-minlength="2" ng-maxlength="40" />
                 <div class="error-container"
                      ng-show="addNoteForm.date.$dirty && addNoteForm.date.$invalid">
-                    <p ng-show="addNoteForm.date.$invalid && !addNoteForm.date.$pristine && addNoteForm.date.$error.required" class="help-block">Note date is required.</p>
-                    <p ng-show="addNoteForm.date.$error.minlength" class="help-block">Date is too short (minimal length is 2 characters).</p>
-                    <p ng-show="addNoteForm.date.$error.maxlength" class="help-block">Date is too long (maximum length is 30 characters).</p>
+                    <p ng-show="addNoteForm.date.$invalid && !addNoteForm.date.$pristine && addNoteForm.date.$error.required" class="help-block">Введите дату</p>
+                    <p ng-show="addNoteForm.date.$error.minlength" class="help-block">Слишком короткая дата (минимально два символа).</p>
+                    <p ng-show="addNoteForm.date.$error.maxlength" class="help-block">Слишком длинная дата (максимум равен 40 символов).</p>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputDescription" class="col-sm-2 control-label">Заметка</label>
+            <label for="inputDescription" class="col-sm-2 control-label">Запись:</label>
             <div class="col-sm-10" ng-class="{ 'has-error' : addNoteForm.description.$invalid && !addNoteForm.description.$pristine }">
-                <input type="text" name="description" ng-model="newNote.description" placeholder="Description" class="form-control" required ng-minlength="2" ng-maxlength="50"/>
+                <input type="text" name="description" ng-model="newNote.description" placeholder="Текст заметки..." class="form-control" required ng-minlength="1" ng-maxlength="4000"/>
                 <div class="error-container"
                      ng-show="addNoteForm.description.$dirty && addNoteForm.description.$invalid">
-                    <p ng-show="addNoteForm.description.$invalid && !addNoteForm.description.$pristine && addNoteForm.description.$error.required" class="help-block">description is required.</p>
-                    <p ng-show="addNoteForm.description.$error.minlength" class="help-block">description is too small (minimal description is 2).</p>
-                    <p ng-show="addNoteForm.description.$error.maxlength" class="help-block">description is too big (maximum description is 50).</p>
+                    <p ng-show="addNoteForm.description.$invalid && !addNoteForm.description.$pristine && addNoteForm.description.$error.required" class="help-block">Введите запись</p>
+                    <p ng-show="addNoteForm.description.$error.minlength" class="help-block">Слишком короткая запись (минимально один символ).</p>
+                    <p ng-show="addNoteForm.description.$error.maxlength" class="help-block">Слишком длинная запись (максимум равен 4000 символов).</p>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-primary" ng-disabled="addNoteForm.$invalid">Add Note</button>
+                <button class="btn btn-primary" ng-disabled="addNoteForm.$invalid">Сохранить запись</button>
             </div>
         </div>
     </form>

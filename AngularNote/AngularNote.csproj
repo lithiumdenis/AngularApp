@@ -178,7 +178,6 @@
     <Content Include="Scripts\angular-locale_ru-ru.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\EditNote.html" />
-    <Content Include="Scripts\app\mainPage.html" />
     <Content Include="Scripts\app\NoteAddController.js" />
     <Content Include="Scripts\app\NoteEditController.js" />
     <Content Include="Scripts\app\notesController.js" />
@@ -225,8 +224,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Angular\Index.cshtml" />
-    <Content Include="Views\Shared\_AngularLayout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

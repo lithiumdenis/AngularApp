@@ -6,11 +6,15 @@ using System.Web.Mvc;
 
 namespace AngularNote.Controllers
 {
-    public class HomeController : Controller
+    public class AngularController : Controller
     {
-        public ActionResult Index(string returnUrl)
-        {            
+        //
+        // GET: /Angular/
+
+        public ActionResult Index()
+        {
             return View();
         }
+
     }
 }

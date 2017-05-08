@@ -1,0 +1,39 @@
+﻿<div ng-controller="noteEditController">
+    <div class="row">
+        <div class="col-md-4">
+            <p class="lead">Edit note</p>
+        </div>
+    </div>
+
+    <form name="editNoteForm" class="form-horizontal" ng-submit="updateNote()" novalidate>
+        <div class="form-group">
+            <label for="inputDate" class="col-sm-2 control-label">Дата</label>
+            <div class="col-sm-10" ng-class="{ 'has-error' : editNoteForm.date.$invalid && !editNoteForm.date.$pristine }">
+                <input type="text" name="date" ng-model="note.date" placeholder="Date" class="form-control" required ng-minlength="2" ng-maxlength="40" />
+                <div class="error-container"
+                     ng-show="editNoteForm.date.$dirty && editNoteForm.date.$invalid">
+                    <p ng-show="editNoteForm.date.$invalid && !editNoteForm.date.$pristine && editNoteForm.date.$error.required" class="help-block">Note date is required.</p>
+                    <p ng-show="editNoteForm.date.$error.minlength" class="help-block">date is too short (minimal length is 2 characters).</p>
+                    <p ng-show="editNoteForm.date.$error.maxlength" class="help-block">date is too long (maximum length is 40 characters).</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDescription" class="col-sm-2 control-label">Заметка</label>
+            <div class="col-sm-10" ng-class="{ 'has-error' : editNoteForm.description.$invalid && !editNoteForm.description.$pristine }">
+                <input type="text" name="description" ng-model="note.description" placeholder="Description" class="form-control" required ng-minlength="2" ng-maxlength="40" />
+                <div class="error-container"
+                     ng-show="editNoteForm.description.$dirty && editNoteForm.description.$invalid">
+                    <p ng-show="editNoteForm.description.$invalid && !editNoteForm.description.$pristine && editNoteForm.description.$error.required" class="help-block">description is required.</p>
+                    <p ng-show="editNoteForm.description.$error.minlength" class="help-block">description is too small (minimal description is 2).</p>
+                    <p ng-show="editNoteForm.description.$error.maxlength" class="help-block">description is too big (maximum description is 40).</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-primary" ng-disabled="editNoteForm.$invalid">Save note</button>
+            </div>
+        </div>
+    </form>
+</div>

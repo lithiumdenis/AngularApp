@@ -1,35 +1,38 @@
 ﻿<div ng-controller="notesListController">
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row" >
+        <div class="col-md-2">
             <p class="lead">Список записей</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             <form class="form-inline">
-                <div class="form-group">
-                    <label class="lead">Поиск:</label>
-                    <input ng-model="query" class="form-control" placeholder="...">
+                <div class="form-group col-md-12">
+                    <div class="inner-addon right-addon enjoy-cssx">
+                        <i class="glyphicon glyphicon-search"></i>
+                        <input ng-model="query" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
+                    </div>
                 </div>
             </form>
         </div>
-        <div class="col-md-4">
-            <button class="btn btn-primary" ng-click="addNote()">Добавить запись</button>
+        <div class="col-md-2">
+            <button class="btn btn-success col-md-12" ng-click="addNote()">Добавить запись</button>
         </div>
     </div>
 
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover col-md-12">
         <tr>
-            <th>ID</th>
-            <th>Дата</th>
-            <th>Текст записи</th>
+            <th ng-click="sortBy('created')">Дата создания</th>
+            <th ng-click="sortBy('changed')">Дата изменения</th>
+            <th ng-click="sortBy('description')">Текст записи</th>
             <th></th>
             <th></th>
         </tr>
-        <tr ng-repeat="note in notes | filter:query">
-            <td>{{$index + 1}}</td>
-            <td>{{note.date}}</td>
+        <tr ng-repeat="note in notes | orderBy:sortField:reverseOrder | filter:query">
+            <td>{{note.created | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+            <td>{{note.changed | date:'dd.MM.yyyy HH:mm:ss' }}</td>
             <td>{{note.description}}</td>
-            <td><button class="btn btn-warning" ng-click="editNote(note.id)">Изменить</button></td>
+            <td><button class="btn btn-success" ng-click="editNote(note.id)">Изменить</button></td>
             <td><button class="btn btn-danger" ng-click="deleteNote(note.id)">Удалить</button></td>
         </tr>
     </table>
+    <!--<uib-pagination total-items="notes.totalitems" max-size="5" ng-model="notes.currentPage" ng-change="pageChanged()"></uib-pagination>-->
 </div>

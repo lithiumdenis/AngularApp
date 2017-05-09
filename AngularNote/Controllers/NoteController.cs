@@ -12,13 +12,15 @@ namespace AngularNote.Controllers
 
         DatabaseEntitiesNote db = new DatabaseEntitiesNote();
 
-        // GET api/product
+        // GET api/note
+        //Возврат полного списка заметок
         public List<Note> Get()
         {
             return db.Note.ToList();
         }
 
-        // GET api/product/5
+        // GET api/note/5
+        //Возвращает отдельную заметку
         public Note Get(int id)
         {
             var note = db.Note.FirstOrDefault(s => s.Id == id);
@@ -29,23 +31,29 @@ namespace AngularNote.Controllers
             throw new HttpResponseException(HttpStatusCode.NoContent);
         }
 
-        // POST api/product
+        // POST api/note
+        //Для создания новых заметок
         public void Post(Note note)
         {
             note.Id = db.Note.Any() ? db.Note.Max(s => s.Id) + 1 : 1;
+            //Задаём время создания и изменения идентичными
+            note.Created = DateTime.Now;
+            note.Changed = DateTime.Now;
             db.Note.Add(note);
             db.SaveChanges();
         }
 
-        // PUT api/product/5
+        // PUT api/note/5
+        //Функция для обновления существующей записи по id
         public void Put(Note newNote)
         {
             var note = db.Note.FirstOrDefault(s => s.Id == newNote.Id);
 
             if (note != null)
             {
-                note.Date = newNote.Date;
                 note.Description = newNote.Description;
+                //Меняем время изменения на текущее
+                note.Changed = DateTime.Now; 
                 db.SaveChanges();
                 return;
             }
@@ -53,7 +61,8 @@ namespace AngularNote.Controllers
             throw new HttpResponseException(HttpStatusCode.NoContent);
         }
 
-        // DELETE api/product/5
+        // DELETE api/note/5
+        //Удаление записей по id
         public List<Note> Delete(int id)
         {
             var note = db.Note.FirstOrDefault(s => s.Id == id);

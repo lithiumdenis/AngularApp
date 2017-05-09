@@ -19,4 +19,14 @@
     $scope.addNote = function () {
         $location.path('/angular/notes/add')
     }
+
+    //page sort
+    $scope.reverseOrder = false;
+    $scope.sortField = 'created';
+
+    $scope.sortBy = function (sortField) {
+        $scope.reverseOrder = ($scope.sortField === sortField) ? !$scope.reverseOrder : false;
+        $scope.sortField = sortField;
+    };
+
 }]);

@@ -15,7 +15,8 @@ namespace AngularNote
     public partial class Note
     {
         public int Id { get; set; }
-        public string Date { get; set; }
+        public System.DateTime Created { get; set; }
+        public System.DateTime Changed { get; set; }
         public string Description { get; set; }
     }
 }

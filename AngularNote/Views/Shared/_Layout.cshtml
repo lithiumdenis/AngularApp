@@ -5,16 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-locale_ru-ru.js"></script>
-    <script src="~/Scripts/angular-route.js"></script>
 
-    <script src="~/Scripts/app/app.js"></script>
-    <script src="~/Scripts/app/notesController.js"></script>
-    <script src="~/Scripts/app/NoteAddController.js"></script>
-    <script src="~/Scripts/app/NoteEditController.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css">
+    @Scripts.Render("~/bundles/angularJS")
+    @Scripts.Render("~/bundles/customJS")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -35,5 +30,9 @@
 
     <div ng-view class="container"></div>
     @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

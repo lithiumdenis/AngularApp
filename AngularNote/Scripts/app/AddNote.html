@@ -4,23 +4,9 @@
             <p class="lead">Добавить запись</p>
         </div>
     </div>
-
     <form name="addNoteForm" class="form-horizontal" ng-submit="addNote()" novalidate>
         <div class="form-group">
-            <label for="inputDate" class="col-sm-2 control-label">Дата:</label>
-            <div class="col-sm-10" ng-class="{ 'has-error' : addNoteForm.date.$invalid && !addNoteForm.date.$pristine }">
-                <input type="text" name="date" ng-model="newNote.date" placeholder="Дата"
-                       class="form-control" required ng-minlength="2" ng-maxlength="40" />
-                <div class="error-container"
-                     ng-show="addNoteForm.date.$dirty && addNoteForm.date.$invalid">
-                    <p ng-show="addNoteForm.date.$invalid && !addNoteForm.date.$pristine && addNoteForm.date.$error.required" class="help-block">Введите дату</p>
-                    <p ng-show="addNoteForm.date.$error.minlength" class="help-block">Слишком короткая дата (минимально два символа).</p>
-                    <p ng-show="addNoteForm.date.$error.maxlength" class="help-block">Слишком длинная дата (максимум равен 40 символов).</p>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputDescription" class="col-sm-2 control-label">Запись:</label>
+            <label for="inputDescription" class="col-xs-4  control-label">Запись:</label>
             <div class="col-sm-10" ng-class="{ 'has-error' : addNoteForm.description.$invalid && !addNoteForm.description.$pristine }">
                 <input type="text" name="description" ng-model="newNote.description" placeholder="Текст заметки..." class="form-control" required ng-minlength="1" ng-maxlength="4000"/>
                 <div class="error-container"

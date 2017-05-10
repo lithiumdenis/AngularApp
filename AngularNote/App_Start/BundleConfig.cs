@@ -22,7 +22,7 @@ namespace AngularNote
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/ui-bootstrap-tpls-2.5.0.min.js"));
+                      "~/Scripts/ui-bootstrap-tpls-0.11.0.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -30,7 +30,8 @@ namespace AngularNote
 
             bundles.Add(new ScriptBundle("~/bundles/angularJS").Include(
                      "~/Scripts/angular.js",
-                     "~/Scripts/angular-route.js"));
+                     "~/Scripts/angular-route.js",
+                     "~/Scripts/angular-resource.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/customJS").Include(
                                  "~/Scripts/app/app.js",

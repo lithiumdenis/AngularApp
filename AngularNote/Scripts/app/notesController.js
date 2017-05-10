@@ -1,7 +1,12 @@
-﻿restApp.controller("notesListController", ['$scope', '$http', '$window', '$routeParams', '$location', function ($scope, $http, $window, $routeParams, $location) {    
+﻿restApp.controller("notesListController", ['$scope', '$http', '$window', '$routeParams', '$location', function ($scope, $http, $window, $routeParams, $location, $filter) {
     $http.get('http://localhost:64331/api/note').success(
         function (data) {
             $scope.notes = data;
+
+            //Pagination
+            $scope.totalItems = $scope.notes.length;
+            $scope.currentPage = 0;
+            $scope.numPerPage = 3;
         });
 
     $scope.deleteNote = function (id) {        
@@ -20,7 +25,7 @@
         $location.path('/angular/notes/add')
     }
 
-    //page sort
+    //Page sort
     $scope.reverseOrder = false;
     $scope.sortField = 'created';
 
@@ -29,4 +34,10 @@
         $scope.sortField = sortField;
     };
 
+    //Pagination
+
+    $scope.numberOfPages = function () {
+        $scope.totalPages = Math.ceil($scope.totalItems / $scope.numPerPage);
+        //return Math.ceil($scope.totalItems / $scope.numPerPage);
+    }
 }]);

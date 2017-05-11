@@ -27,18 +27,9 @@ restApp.config(['$routeProvider', '$locationProvider',
         });      
   }]);
 
-//restApp.filter('startFrom', function () {
-//    return function (input, start) {
-//        if (!angular.isArray(input)) {
-//            return [];
-//        }
-//        start = +start; //parse to int
-//        return input.slice(start);
-//    };
-//});
-
+/*Пользовательский фильтр, сортирующий все записи по параметру, а потом убирающий все согласно поисковому запросу*/
 restApp.filter('orderObjectBy', function () {
-    return function (items, field, reverse, query, start) {
+    return function (items, field, reverse, query) {
         //Sorting
         var filtered = [];
         angular.forEach(items, function (item) {
@@ -62,8 +53,14 @@ restApp.filter('orderObjectBy', function () {
             }
         }
         
-        //Pagination
-        start = +start; //parse to int
-        return filtered2.slice(start);
+        return filtered2;
     };
 });
+
+/*Пользовательский фильтр для пагинации*/
+restApp.filter('startFrom', function () {
+    return function (input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+}); 

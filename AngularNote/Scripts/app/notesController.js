@@ -35,9 +35,7 @@
     };
 
     //Pagination
-
     $scope.numberOfPages = function () {
-        $scope.totalPages = Math.ceil($scope.totalItems / $scope.numPerPage);
-        //return Math.ceil($scope.totalItems / $scope.numPerPage);
+        return Math.ceil($scope.filteredNotes.length / $scope.numPerPage);
     }
 }]);

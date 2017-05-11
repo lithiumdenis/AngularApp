@@ -2,19 +2,19 @@
     $http.get('http://localhost:64331/api/note').success(
         function (data) {
             $scope.notes = data;
-
             //Pagination
             $scope.totalItems = $scope.notes.length;
             $scope.currentPage = 0;
             $scope.numPerPage = 3;
         });
 
-    $scope.deleteNote = function (id) {        
+    $scope.deleteNote = function (id) {
         $http.delete('http://localhost:64331/api/note/' + id).success(
             function (data) {
                 $scope.notes = data;
             }).error(function () {
-                $window.alert('error');})
+                $window.alert('error');
+            })
     };
 
     $scope.editNote = function (id) {
@@ -36,6 +36,9 @@
 
     //Pagination
     $scope.numberOfPages = function () {
-        return Math.ceil($scope.filteredNotes.length / $scope.numPerPage);
+        if (undefined == $scope.filteredNotes)
+            return 1;
+        else
+            return Math.ceil($scope.filteredNotes.length / $scope.numPerPage);
     }
 }]);

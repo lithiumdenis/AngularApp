@@ -1,27 +1,11 @@
 ﻿<div ng-controller="noteEditController">
-    <div class="row">
-        <div class="col-md-4">
-            <p class="lead">Изменение записи</p>
-        </div>
-    </div>
-
     <form name="editNoteForm" class="form-horizontal" ng-submit="updateNote()" novalidate>
-        <div class="form-group">
-            <label for="inputDescription" class="col-sm-2 control-label">Запись:</label>
-            <div class="col-sm-10" ng-class="{ 'has-error' : editNoteForm.description.$invalid && !editNoteForm.description.$pristine }">
-                <input type="text" name="description" ng-model="note.description" placeholder="Текст записи..." class="form-control" required ng-minlength="1" ng-maxlength="4000" />
-                <div class="error-container"
-                     ng-show="editNoteForm.description.$dirty && editNoteForm.description.$invalid">
-                    <p ng-show="editNoteForm.description.$invalid && !editNoteForm.description.$pristine && editNoteForm.description.$error.required" class="help-block">Введите запись</p>
-                    <p ng-show="addNoteForm.description.$error.minlength" class="help-block">Слишком короткая запись (минимально один символ).</p>
-                    <p ng-show="addNoteForm.description.$error.maxlength" class="help-block">Слишком длинная запись (максимум равен 4000 символов).</p>
-                </div>
-            </div>
+        <div class="form-group col-md-12">
+            <button class="btn btn-primary btn-block">Сохранить изменения</button>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-primary" ng-disabled="editNoteForm.$invalid">Сохранить изменения</button>
-            </div>
+            <ng-quill-editor ng-model="note.description" toolbar="true" link-tooltip="true" image-tooltip="false" toolbar-entries="font size bold list bullet italic underline strike align color background link" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
         </div>
     </form>
+    <!--Text in scope: {{note.description}}-->
 </div>

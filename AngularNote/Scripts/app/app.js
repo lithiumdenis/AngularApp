@@ -1,4 +1,4 @@
-﻿var restApp = angular.module('restApp', ['ngRoute', 'ui.bootstrap', 'ngResource']);
+﻿var restApp = angular.module('restApp', ['ngRoute', 'ui.bootstrap', 'ngQuill']);
 
 restApp.config(['$routeProvider', '$locationProvider',
   function ($routeProvider, $locationProvider) {
@@ -24,8 +24,13 @@ restApp.config(['$routeProvider', '$locationProvider',
                     window.location = baseSiteUrl + "angular/page-not-found";
                 }
             }
-        });      
+        });
   }]);
+
+/*Конфигурация для текстового редактора ngQuill*/
+restApp.config(['ngQuillConfigProvider', function (ngQuillConfigProvider) {
+    ngQuillConfigProvider.set();
+}]);
 
 /*Пользовательский фильтр, сортирующий все записи по параметру, а потом убирающий все согласно поисковому запросу*/
 restApp.filter('orderObjectBy', function () {
@@ -52,7 +57,6 @@ restApp.filter('orderObjectBy', function () {
                 filtered2.push(item);
             }
         }
-        
         return filtered2;
     };
 });
@@ -63,4 +67,4 @@ restApp.filter('startFrom', function () {
         start = +start; //parse to int
         return input.slice(start);
     }
-}); 
+});

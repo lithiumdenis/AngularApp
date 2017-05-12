@@ -30,6 +30,7 @@ namespace AngularNote
                                  "~/Scripts/app/notesController.js",
                                  "~/Scripts/app/NoteAddController.js",
                                  "~/Scripts/app/NoteEditController.js",
+                                 "~/Scripts/app/NoteShowController.js",
                                  "~/Scripts/quill.js",
                                  "~/Scripts/ng-quill.js"));
         }

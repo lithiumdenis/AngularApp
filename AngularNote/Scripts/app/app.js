@@ -11,6 +11,10 @@ restApp.config(['$routeProvider', '$locationProvider',
             templateUrl: '/Scripts/app/EditNote.html',
             controller: 'noteEditController'
         }).
+        when('/angular/notes/show/:noteId', {
+            templateUrl: '/Scripts/app/ShowNote.html',
+            controller: 'noteShowController'
+        }).
         when('/angular/notes/add', {
             templateUrl: '/Scripts/app/AddNote.html',
             controller: 'noteAddController'

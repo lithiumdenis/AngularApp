@@ -147,7 +147,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AngularController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,6 +183,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\app\AddNote.html" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\ShowNote.html" />
     <Content Include="Scripts\app\EditNote.html" />
     <Content Include="Scripts\app\NoteAddController.js" />
     <Content Include="Scripts\app\NoteEditController.js" />
@@ -211,6 +211,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\ng-quill.js" />
+    <Content Include="Scripts\app\NoteShowController.js" />
     <Content Include="Scripts\quill.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.11.0.js" />

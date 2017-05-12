@@ -17,6 +17,10 @@
             })
     };
 
+    $scope.showNote = function (id) {
+        $location.path('/angular/notes/show/' + id);
+    }
+
     $scope.editNote = function (id) {
         $location.path('/angular/notes/edit/' + id);
     }

@@ -1,0 +1,15 @@
+﻿<div ng-controller="noteShowController">
+    <form name="showNoteForm" class="form-horizontal" ng-submit="closeNote()" novalidate>
+        <div class="form-group">
+            <button class="btn btn-success btn-block col-sm-12">Завершить просмотр</button>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 btn-block">
+                <input type="text" name="title" readonly="readonly" ng-model="note.title" placeholder="Заголовок записи..." class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <ng-quill-editor ng-model="note.description" read-only="true" required="true" max-length="5" min-length="2" modules="{toolbar: false}"></ng-quill-editor>
+        </div>
+    </form>
+</div>

@@ -40,7 +40,6 @@
                     <th ng-click="sortBy('changed')">Дата изменения</th>
                     <th ng-click="sortBy('title')">Заголовок записи</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,8 +49,13 @@
                     <td>{{convertUTCDateToLocalDate(note.created) | date:'dd.MM.yyyy HH:mm:ss' }}</td>
                     <td>{{convertUTCDateToLocalDate(note.changed) | date:'dd.MM.yyyy HH:mm:ss' }}</td>
                     <td>{{note.title}}</td>
-                    <td><button class="btn btn-success" ng-click="editNote(note.id)">Изменить</button></td>
-                    <td><button class="btn btn-danger" ng-click="deleteNote(note.id)">Удалить</button></td>
+                    <td align="right">
+                        <div class="btn-group">
+                            <button class="btn btn-success" ng-click="showNote(note.id)">Открыть</button>
+                            <button class="btn btn-warning" ng-click="editNote(note.id)">Изменить</button>
+                            <button class="btn btn-danger" ng-click="deleteNote(note.id)">Удалить</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

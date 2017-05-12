@@ -1,11 +1,21 @@
 ﻿<div ng-controller="noteEditController">
     <form name="editNoteForm" class="form-horizontal" ng-submit="updateNote()" novalidate>
-        <div class="form-group col-md-12">
-            <button class="btn btn-primary btn-block">Сохранить изменения</button>
+        <div class="form-group">
+            <button class="btn btn-success btn-block col-sm-12" ng-disabled="editNoteForm.$invalid">Сохранить изменения</button>
         </div>
         <div class="form-group">
-            <ng-quill-editor ng-model="note.description" toolbar="true" link-tooltip="true" image-tooltip="false" toolbar-entries="font size bold list bullet italic underline strike align color background link" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+            <div class="col-sm-12 btn-block" ng-class="{ 'has-error' : editNoteForm.title.$invalid && !editNoteForm.title.$pristine }">
+                <input type="text" name="title" ng-model="note.title" placeholder="Заголовок записи..." class="form-control" required ng-minlength="3" ng-maxlength="80" />
+                <div class="error-container"
+                     ng-show="editNoteForm.title.$dirty && editNoteForm.title.$invalid">
+                    <p ng-show="editNoteForm.title.$invalid && !editNoteForm.title.$pristine && editNoteForm.title.$error.required" class="help-block">Введите запись</p>
+                    <p ng-show="editNoteForm.title.$error.minlength" class="help-block">Слишком короткий заголовок (минимально три символа).</p>
+                    <p ng-show="editNoteForm.title.$error.maxlength" class="help-block">Слишком длинный заголовок (максимум равен 80 символов).</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <ng-quill-editor ng-model="note.description" placeholder="Текст записи..." toolbar="true" link-tooltip="true" image-tooltip="false" toolbar-entries="font size bold list bullet italic underline strike align color background link" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
         </div>
     </form>
-    <!--Text in scope: {{note.description}}-->
 </div>

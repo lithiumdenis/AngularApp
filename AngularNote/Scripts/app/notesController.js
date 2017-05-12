@@ -5,7 +5,7 @@
             //Pagination
             $scope.totalItems = $scope.notes.length;
             $scope.currentPage = 0;
-            $scope.numPerPage = 3;
+            $scope.numPerPage = 10;
         });
 
     $scope.deleteNote = function (id) {

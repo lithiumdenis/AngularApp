@@ -27,11 +27,6 @@ restApp.config(['$routeProvider', '$locationProvider',
         });
   }]);
 
-/*Конфигурация для текстового редактора ngQuill*/
-restApp.config(['ngQuillConfigProvider', function (ngQuillConfigProvider) {
-    ngQuillConfigProvider.set();
-}]);
-
 /*Пользовательский фильтр, сортирующий все записи по параметру, а потом убирающий все согласно поисковому запросу*/
 restApp.filter('orderObjectBy', function () {
     return function (items, field, reverse, query) {
@@ -51,7 +46,7 @@ restApp.filter('orderObjectBy', function () {
         var letterMatch = new RegExp(query, 'i'); //where i - register independence
         for (var i = 0; i < filtered.length; i++) {
             var item = filtered[i];
-            if (letterMatch.test(item.description.substring()) ||
+            if (letterMatch.test(item.title.substring()) ||
                 letterMatch.test(item.changed.substring()) ||
                 letterMatch.test(item.created.substring())) {
                 filtered2.push(item);

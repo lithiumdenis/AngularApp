@@ -52,6 +52,7 @@ namespace AngularNote.Controllers
             if (note != null)
             {
                 note.Description = newNote.Description;
+                note.Title = newNote.Title;
                 //Меняем время изменения на текущее
                 note.Changed = DateTime.Now; 
                 db.SaveChanges();

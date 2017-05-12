@@ -38,7 +38,7 @@
                 <tr>
                     <th ng-click="sortBy('created')">Дата создания</th>
                     <th ng-click="sortBy('changed')">Дата изменения</th>
-                    <th ng-click="sortBy('description')">Текст записи</th>
+                    <th ng-click="sortBy('title')">Заголовок записи</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -49,7 +49,7 @@
                 <tr ng-repeat="note in filteredNotes2 = ( (filteredNotes = (notes | orderObjectBy:sortField:reverseOrder:query )) | startFrom:currentPage*numPerPage | limitTo:numPerPage) ">
                     <td>{{note.created | date:'dd.MM.yyyy HH:mm:ss' }}</td>
                     <td>{{note.changed | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-                    <td>{{note.description}}</td>
+                    <td>{{note.title}}</td>
                     <td><button class="btn btn-success" ng-click="editNote(note.id)">Изменить</button></td>
                     <td><button class="btn btn-danger" ng-click="deleteNote(note.id)">Удалить</button></td>
                 </tr>

@@ -18,5 +18,6 @@ namespace AngularNote
         public System.DateTime Created { get; set; }
         public System.DateTime Changed { get; set; }
         public string Description { get; set; }
+        public string Title { get; set; }
     }
 }

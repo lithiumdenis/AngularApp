@@ -47,8 +47,8 @@
                 <!-- filteredNotes имеет список после сортировки и поиска (из него получаем общее число элементов, необходимых для того, чтобы посчитать количество страниц для пагинатора) -->
                 <!-- filteredNotes2 - список после пагинации -->
                 <tr ng-repeat="note in filteredNotes2 = ( (filteredNotes = (notes | orderObjectBy:sortField:reverseOrder:query )) | startFrom:currentPage*numPerPage | limitTo:numPerPage) ">
-                    <td>{{note.created | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-                    <td>{{note.changed | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+                    <td>{{convertUTCDateToLocalDate(note.created) | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+                    <td>{{convertUTCDateToLocalDate(note.changed) | date:'dd.MM.yyyy HH:mm:ss' }}</td>
                     <td>{{note.title}}</td>
                     <td><button class="btn btn-success" ng-click="editNote(note.id)">Изменить</button></td>
                     <td><button class="btn btn-danger" ng-click="deleteNote(note.id)">Удалить</button></td>

@@ -26,7 +26,7 @@
     }
 
     //Page sort
-    $scope.reverseOrder = false;
+    $scope.reverseOrder = true;
     $scope.sortField = 'created';
 
     $scope.sortBy = function (sortField) {
@@ -40,5 +40,15 @@
             return 1;
         else
             return Math.ceil($scope.filteredNotes.length / $scope.numPerPage);
+    }
+
+    //Convert server time (UTC+0) to client time (for example, UTC+3 for Moscow time)
+    $scope.convertUTCDateToLocalDate = function (dateCurr) {
+        var date = new Date(dateCurr);
+        var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+        var offset = date.getTimezoneOffset() / 60;
+        var hours = date.getHours();
+        newDate.setHours(hours - offset);
+        return newDate;
     }
 }]);

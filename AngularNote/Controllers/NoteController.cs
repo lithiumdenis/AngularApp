@@ -37,8 +37,8 @@ namespace AngularNote.Controllers
         {
             note.Id = db.Note.Any() ? db.Note.Max(s => s.Id) + 1 : 1;
             //Задаём время создания и изменения идентичными
-            note.Created = DateTime.Now;
-            note.Changed = DateTime.Now;
+            note.Created = DateTime.Now.ToUniversalTime(); //Гринвич UTC+0
+            note.Changed = DateTime.Now.ToUniversalTime();
             db.Note.Add(note);
             db.SaveChanges();
         }
@@ -54,7 +54,7 @@ namespace AngularNote.Controllers
                 note.Description = newNote.Description;
                 note.Title = newNote.Title;
                 //Меняем время изменения на текущее
-                note.Changed = DateTime.Now; 
+                note.Changed = DateTime.Now.ToUniversalTime(); //Гринвич UTC+0; 
                 db.SaveChanges();
                 return;
             }

@@ -18,8 +18,8 @@ namespace AngularNote
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
-                      "~/Content/quill.snow.css",
-                      "~/Content/quill.bubble.css"));
+                      "~/Content/quill.bubble.css",
+                      "~/Content/quill.snow.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularJS").Include(
                      "~/Scripts/angular.js",

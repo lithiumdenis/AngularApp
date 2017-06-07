@@ -6,6 +6,10 @@
             $scope.totalItems = $scope.notes.length;
             $scope.currentPage = 0;
             $scope.numPerPage = 10;
+        }).error(
+        function(data)
+        {
+            alert("Ошибка при получении списка от сервера. Проверьте, запущен ли сервер");
         });
 
     $scope.deleteNote = function (id) {
@@ -13,6 +17,7 @@
             function (data) {
                 $scope.notes = data;
             }).error(function () {
+                alert("Ошибка при удалении с сервера. Проверьте, запущен ли сервер");
                 $window.alert('error');
             })
     };
@@ -40,7 +45,9 @@
 
     //Pagination
     $scope.numberOfPages = function () {
-        if (undefined == $scope.filteredNotes)
+        if (undefined == $scope.filteredNotes) //when length is not defined
+            return 1;
+        else if (0 == $scope.filteredNotes) //when length is 0
             return 1;
         else
             return Math.ceil($scope.filteredNotes.length / $scope.numPerPage);
@@ -54,5 +61,15 @@
         var hours = date.getHours();
         newDate.setHours(hours - offset);
         return newDate;
+    }
+
+    //Icons for arrows in the table header
+    $scope.getIcon = function (column) {
+        if ($scope.sortField == column) {
+            return $scope.reverseOrder
+              ? 'glyphicon-collapse-up'
+              : 'glyphicon-collapse-down';
+        }
+        return 'glyphicon-unchecked';
     }
 }]);

@@ -4,6 +4,7 @@
                 $scope.note = data;
             }).error(
             function (error) {
+                alert("Ошибка при получении данных. Проверьте, запущен ли сервер");
                 $window.alert('Error: ' + error);
             });
 
@@ -14,6 +15,7 @@
 
                 }).error(
                 function (error) {
+                    alert("Ошибка при изменении. Проверьте, запущен ли сервер");
                     $window.alert('Error: ' + error);
                 });
 

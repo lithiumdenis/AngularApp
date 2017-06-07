@@ -4,6 +4,7 @@
                 $scope.note = data;
             }).error(
             function (error) {
+                alert("Ошибка при получении записи. Проверьте, запущен ли сервер");
                 $window.alert('Error: ' + error);
             });
 

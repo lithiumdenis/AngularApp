@@ -6,6 +6,9 @@
         if ($scope.addNoteForm.$valid) {
             $http.post('http://localhost:64331/api/note', $scope.newNote, {}).success(
                 function () {
+                }).error(
+                function () {
+                    alert("Ошибка добавления записи. Проверьте, запущен ли сервер.");
                 });
 
             $location.path('/');

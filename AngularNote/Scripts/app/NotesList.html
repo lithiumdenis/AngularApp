@@ -22,7 +22,7 @@
                     <div class="form-group col-md-12">
                         <div class="inner-addon right-addon enjoy-cssx">
                             <i class="glyphicon glyphicon-search"></i>
-                            <input ng-model="query" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
+                            <input ng-model="query" ng-click="currentPage=0" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
                         </div>
                     </div>
                 </form>
@@ -36,9 +36,18 @@
         <table class="table table-striped table-hover col-md-12">
             <thead>
                 <tr>
-                    <th ng-click="sortBy('created')">Дата создания</th>
-                    <th ng-click="sortBy('changed')">Дата изменения</th>
-                    <th ng-click="sortBy('title')">Заголовок записи</th>
+                    <th ng-click="sortBy('created')">
+                        Дата создания
+                        <i class="glyphicon" ng-class="getIcon('created')"></i>
+                    </th>
+                    <th ng-click="sortBy('changed')">
+                        Дата изменения
+                        <i class="glyphicon" ng-class="getIcon('changed')"></i>
+                    </th>
+                    <th ng-click="sortBy('title')">
+                        Заголовок записи
+                        <i class="glyphicon" ng-class="getIcon('title')"></i>
+                    </th>
                     <th></th>
                 </tr>
             </thead>

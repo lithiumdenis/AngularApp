@@ -38,7 +38,7 @@
                   /*['link', 'image', 'video']    */                     // link and image, video
                 ]
             },
-            theme: 'snow',
+            theme: 'bubble',   //snow
             placeholder: '',
             readOnly: false,
             bounds: document.body

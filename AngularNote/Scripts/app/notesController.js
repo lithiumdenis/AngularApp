@@ -1,26 +1,60 @@
-﻿restApp.controller("notesListController", ['$scope', '$http', '$window', '$routeParams', '$location', function ($scope, $http, $window, $routeParams, $location, $filter) {
+﻿restApp.controller("notesListController", ['$scope', '$http', '$window', '$routeParams', '$location', '$timeout', function ($scope, $http, $window, $routeParams, $location, $timeout, $filter) {
     $http.get('http://localhost:64331/api/note').success(
         function (data) {
             $scope.notes = data;
             //Pagination
             $scope.totalItems = $scope.notes.length;
             $scope.currentPage = 0;
-            $scope.numPerPage = 10;
+            $scope.numPerPage = 8;
+
+            $scope.reportMessageSucces = true; // показать сообщение
+            $scope.messageShow = "Все записи успешно загружены";
+            $timeout(function () {
+                $scope.reportMessageSucces = false;
+            }, 3000);
+
         }).error(
-        function(data)
+        function (response)
         {
-            alert("Ошибка при получении списка от сервера. Проверьте, запущен ли сервер");
+
+            $scope.reportMessageError = true; // показать сообщение
+            if (response == null) {
+                $scope.messageShow = "Сервер недоступен";
+            }
+            else {
+                $scope.messageShow = "Ошибка " + response.status + ". " + response.statusText;
+            }
+            $timeout(function () {
+                $scope.reportMessageError = false;
+            }, 3000); // скрыть через время
+
         });
 
     $scope.deleteNote = function (id) {
         $http.delete('http://localhost:64331/api/note/' + id).success(
             function (data) {
                 $scope.notes = data;
-            }).error(function () {
-                alert("Ошибка при удалении с сервера. Проверьте, запущен ли сервер");
-                $window.alert('error');
-            })
-    };
+
+                $scope.reportMessageSucces = true; // показать сообщение
+                $scope.messageShow = "Удаление выполнено успешно";
+                $timeout(function () {
+                    $scope.reportMessageSucces = false;
+                }, 3000);
+                                
+            }).error(function (response) {
+
+                $scope.reportMessageError = true; // показать сообщение
+                if (response == null) {
+                    $scope.messageShow = "Сервер недоступен";
+                }
+                else {
+                    $scope.messageShow = "Ошибка " + response.status + ". " + response.statusText;
+                }
+                $timeout(function () {
+                    $scope.reportMessageError = false;
+                }, 3000); // скрыть через время
+
+            })};
 
     $scope.showNote = function (id) {
         $location.path('/angular/notes/show/' + id);

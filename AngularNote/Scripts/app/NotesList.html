@@ -1,17 +1,22 @@
 ﻿<div class="container-fluid">
     <div ng-controller="notesListController">
+        <!-- Вывод error or success -->
+        <div class="container center-block row">
+            <div ng-show="reportMessageSucces" class="customWordSpace col-md-12 alert alert-success glyphicon glyphicon-ok"> &ensp; {{ messageShow }} </div>
+            <div ng-show="reportMessageError" class="customWordSpace col-md-12 alert alert-danger glyphicon glyphicon-remove"> &ensp; {{ messageShow }} </div>
+        </div>
         <!-- Строка над таблицей -->
         <div class="row">
             <!-- Пагинатор -->
             <div class="col-md-3">
                 <div class="btn-group">
-                    <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                    <button class="btn btn-default btn-sm" ng-disabled="currentPage <= 0" ng-click="currentPage=currentPage-1">
                         Предыдущая
                     </button>
                     <button class="btn btn-default btn-sm" ng-disabled="true">
                         {{currentPage+1}}/{{numberOfPages()}}
                     </button>
-                    <button class="btn btn-default btn-sm" ng-disabled="currentPage >= filteredNotes.length/numPerPage - 1" ng-click="currentPage=currentPage+1">
+                    <button class="btn btn-default btn-sm" ng-disabled="currentPage >= numberOfPages() - 1" ng-click="currentPage=currentPage+1">
                         Следующая
                     </button>
                 </div>
@@ -22,7 +27,7 @@
                     <div class="form-group col-md-12">
                         <div class="inner-addon right-addon enjoy-cssx">
                             <i class="glyphicon glyphicon-search"></i>
-                            <input ng-model="query" ng-click="currentPage=0" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
+                            <input ng-model="query" ng-click="currentPage=1" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
                         </div>
                     </div>
                 </form>

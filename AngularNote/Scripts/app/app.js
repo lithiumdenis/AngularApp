@@ -3,21 +3,57 @@
 restApp.config(['$routeProvider', '$locationProvider',
   function ($routeProvider, $locationProvider) {
       $routeProvider.
-        when('/', {
+        when('/', { //и так всё детектируется
             templateUrl: '/Scripts/app/NotesList.html',
             controller: 'notesListController'
         }).
         when('/angular/notes/edit/:noteId', {
             templateUrl: '/Scripts/app/EditNote.html',
-            controller: 'noteEditController'
+            controller: 'noteEditController',
+            resolve: {
+                message: function ($http) {
+                    $http.get('/').
+                    success(function (data, status, headers, config) {
+                        //console.log("no error occured!!");
+                        //swal("no error occured!");
+                    }).
+                    error(function (data, status, headers, config) {
+                        swal("Ошибка", "Сервер не запущен", "error");
+                    });
+                }
+            }
         }).
         when('/angular/notes/show/:noteId', {
             templateUrl: '/Scripts/app/ShowNote.html',
-            controller: 'noteShowController'
+            controller: 'noteShowController',
+            resolve: {
+                message: function ($http) {
+                    $http.get('/').
+                    success(function (data, status, headers, config) {
+                        //console.log("no error occured!!");
+                        //swal("no error occured!");
+                    }).
+                    error(function (data, status, headers, config) {
+                        swal("Ошибка", "Сервер не запущен", "error");
+                    });
+                }
+            }
         }).
         when('/angular/notes/add', {
             templateUrl: '/Scripts/app/AddNote.html',
-            controller: 'noteAddController'
+            controller: 'noteAddController',
+            resolve: {
+                message: function ($http) {
+                    $http.get('/').
+                    success(function (data, status, headers, config) {
+                        //console.log("no error occured!!");
+                        //swal("no error occured!");
+                    }).
+                    error(function (data, status, headers, config) {
+                        swal("Ошибка", "Сервер не запущен", "error");
+                    });
+                }
+            }
         }).
         otherwise({
             redirectTo: function () {

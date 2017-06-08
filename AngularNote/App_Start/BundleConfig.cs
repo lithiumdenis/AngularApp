@@ -19,7 +19,8 @@ namespace AngularNote
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
                       "~/Content/quill.bubble.css",
-                      "~/Content/quill.snow.css"));
+                      "~/Content/quill.snow.css",
+                      "~/Content/sweetalert.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularJS").Include(
                      "~/Scripts/angular.js",
@@ -32,7 +33,8 @@ namespace AngularNote
                                  "~/Scripts/app/NoteEditController.js",
                                  "~/Scripts/app/NoteShowController.js",
                                  "~/Scripts/quill.js",
-                                 "~/Scripts/ng-quill.js"));
+                                 "~/Scripts/ng-quill.js",
+                                 "~/Scripts/sweetalert.min.js"));
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿.enjoy-css {
+﻿.customWordSpace {
+    word-spacing: -12px;
+} 
+
+.enjoy-css {
   cursor: pointer;
   margin: 0 auto;
   border: .5px solid rgb(232, 238, 241);
@@ -31,8 +35,8 @@
 .right-addon .glyphicon { right: 0px;}
 
 /* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
+.left-addon input  { padding-left:  40px; }
+.right-addon input { padding-right: 40px; }
 
 .mypagination{
     display:table;

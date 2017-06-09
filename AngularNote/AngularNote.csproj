@@ -177,7 +177,6 @@
     <Content Include="Content\quill.bubble.css" />
     <Content Include="Content\quill.snow.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\sweetalert.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
@@ -206,13 +205,11 @@
       <LastGenOutput>ModelDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\ng-quill.js" />
     <Content Include="Scripts\app\NoteShowController.js" />
     <Content Include="Scripts\quill.js" />
     <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.11.0.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />

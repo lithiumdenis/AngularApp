@@ -3,57 +3,21 @@
 restApp.config(['$routeProvider', '$locationProvider',
   function ($routeProvider, $locationProvider) {
       $routeProvider.
-        when('/', { //и так всё детектируется
+        when('/', {
             templateUrl: '/Scripts/app/NotesList.html',
             controller: 'notesListController'
         }).
         when('/angular/notes/edit/:noteId', {
             templateUrl: '/Scripts/app/EditNote.html',
-            controller: 'noteEditController',
-            resolve: {
-                message: function ($http) {
-                    $http.get('/').
-                    success(function (data, status, headers, config) {
-                        //console.log("no error occured!!");
-                        //swal("no error occured!");
-                    }).
-                    error(function (data, status, headers, config) {
-                        swal("Ошибка", "Сервер не запущен", "error");
-                    });
-                }
-            }
+            controller: 'noteEditController'
         }).
         when('/angular/notes/show/:noteId', {
             templateUrl: '/Scripts/app/ShowNote.html',
-            controller: 'noteShowController',
-            resolve: {
-                message: function ($http) {
-                    $http.get('/').
-                    success(function (data, status, headers, config) {
-                        //console.log("no error occured!!");
-                        //swal("no error occured!");
-                    }).
-                    error(function (data, status, headers, config) {
-                        swal("Ошибка", "Сервер не запущен", "error");
-                    });
-                }
-            }
+            controller: 'noteShowController'
         }).
         when('/angular/notes/add', {
             templateUrl: '/Scripts/app/AddNote.html',
-            controller: 'noteAddController',
-            resolve: {
-                message: function ($http) {
-                    $http.get('/').
-                    success(function (data, status, headers, config) {
-                        //console.log("no error occured!!");
-                        //swal("no error occured!");
-                    }).
-                    error(function (data, status, headers, config) {
-                        swal("Ошибка", "Сервер не запущен", "error");
-                    });
-                }
-            }
+            controller: 'noteAddController'
         }).
         otherwise({
             redirectTo: function () {
@@ -66,6 +30,18 @@ restApp.config(['$routeProvider', '$locationProvider',
             }
         });
   }]);
+
+restApp.run(['$rootScope', '$timeout', function ($rootScope, $timeout) {
+    $rootScope.$on('$routeChangeError', function () {
+        //детектор ошибок при загрузке templateURL
+        //$rootScope можно передать в любой контроллер со всем содержимым
+        $rootScope.reportRootScopeMessageError = true; // показать сообщение
+
+        $timeout(function () {
+            $rootScope.reportRootScopeMessageError = false;
+        }, 3000); // скрыть через время
+    });
+}]);
 
 /*Пользовательский фильтр, сортирующий все записи по параметру, а потом убирающий все согласно поисковому запросу*/
 restApp.filter('orderObjectBy', function () {

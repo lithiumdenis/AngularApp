@@ -19430,7 +19430,6 @@ function $TemplateRequestProvider() {
 
       function handleError(resp) {
           if (!ignoreRequestError) {
-              //alert("Ошибка загрузки данных с сервера. Возможно сервер не подключен");
           throw $templateRequestMinErr('tpload', 'Failed to load template: {0} (HTTP status: {1} {2})',
             tpl, resp.status, resp.statusText);
         }

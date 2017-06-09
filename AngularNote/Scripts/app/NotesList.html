@@ -4,6 +4,7 @@
         <div class="container center-block row">
             <div ng-show="reportMessageSucces" class="customWordSpace col-md-12 alert alert-success glyphicon glyphicon-ok"> &ensp; {{ messageShow }} </div>
             <div ng-show="reportMessageError" class="customWordSpace col-md-12 alert alert-danger glyphicon glyphicon-remove"> &ensp; {{ messageShow }} </div>
+            <div ng-show="reportRootScopeMessageError" class="customWordSpace col-md-12 alert alert-danger glyphicon glyphicon-remove"> &ensp; Сервер недоступен </div>
         </div>
         <!-- Строка над таблицей -->
         <div class="row">
@@ -27,7 +28,7 @@
                     <div class="form-group col-md-12">
                         <div class="inner-addon right-addon enjoy-cssx">
                             <i class="glyphicon glyphicon-search"></i>
-                            <input ng-model="query" ng-click="currentPage=1" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
+                            <input ng-model="query" ng-click="currentPage=0" type="text" placeholder="Поиск по записям" class="form-control enjoy-css" />
                         </div>
                     </div>
                 </form>

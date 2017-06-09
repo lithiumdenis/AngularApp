@@ -1,4 +1,4 @@
-﻿restApp.controller("notesListController", ['$scope', '$http', '$window', '$routeParams', '$location', '$timeout', function ($scope, $http, $window, $routeParams, $location, $timeout, $filter) {
+﻿restApp.controller("notesListController", ['$scope', '$http', '$window', '$routeParams', '$location', '$timeout', '$rootScope', function ($scope, $http, $window, $routeParams, $location, $timeout, $rootScope) {
     $http.get('http://localhost:64331/api/note').success(
         function (data) {
             $scope.notes = data;
@@ -6,17 +6,13 @@
             $scope.totalItems = $scope.notes.length;
             $scope.currentPage = 0;
             $scope.numPerPage = 8;
-
             $scope.reportMessageSucces = true; // показать сообщение
             $scope.messageShow = "Все записи успешно загружены";
             $timeout(function () {
                 $scope.reportMessageSucces = false;
             }, 3000);
-
         }).error(
-        function (response)
-        {
-
+        function (response) {
             $scope.reportMessageError = true; // показать сообщение
             if (response == null) {
                 $scope.messageShow = "Сервер недоступен";
@@ -27,22 +23,19 @@
             $timeout(function () {
                 $scope.reportMessageError = false;
             }, 3000); // скрыть через время
-
         });
 
     $scope.deleteNote = function (id) {
         $http.delete('http://localhost:64331/api/note/' + id).success(
             function (data) {
                 $scope.notes = data;
-
                 $scope.reportMessageSucces = true; // показать сообщение
                 $scope.messageShow = "Удаление выполнено успешно";
                 $timeout(function () {
                     $scope.reportMessageSucces = false;
                 }, 3000);
-                                
-            }).error(function (response) {
 
+            }).error(function (response) {
                 $scope.reportMessageError = true; // показать сообщение
                 if (response == null) {
                     $scope.messageShow = "Сервер недоступен";
@@ -53,8 +46,8 @@
                 $timeout(function () {
                     $scope.reportMessageError = false;
                 }, 3000); // скрыть через время
-
-            })};
+            })
+    };
 
     $scope.showNote = function (id) {
         $location.path('/angular/notes/show/' + id);
